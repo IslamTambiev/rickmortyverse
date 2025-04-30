@@ -2,15 +2,19 @@
 
 Приложение на Flutter для просмотра, поиска и добавления в избранное персонажей культового мультсериала "Рик и Морти".
 
-## Getting Started
+## Функционал и стек
+* Пагинация: подгрузка новых персонажей на главном экране при скролле.
+* Кеширование: загруженные данные сохраняются локально.
+* Для кеширования используется Hive и cached_network_image.
+* State management: Bloc.
+* API-запросы через REST.
+* Код должен быть чистым, читаемым и структурированным.
+* Поддержка темной темы с возможностью переключения.
+* Кастомные анимации при нажатии на звездоку добавления и удаления избранного.
 
-This project is a starting point for a Flutter application.
+## Скриншоты
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Light                                | Dark                                 |
+| ------------------------------------ | ------------------------------------ |
+| <img src="images/1.png" width="400"> | <img src="images/3.png" width="400"> |
+| <img src="images/2.png" width="400"> | <img src="images/4.png" width="400"> |
