@@ -21,7 +21,9 @@ class CharacterRepository {
     final response = await http.get(url);
 
     if (response.statusCode != 200) {
-      throw Exception('Ошибка загрузки персонажей (код: ${response.statusCode})');
+      throw Exception(
+        'Ошибка загрузки персонажей (код: ${response.statusCode})',
+      );
     }
 
     final Map<String, dynamic> data = json.decode(response.body);
@@ -31,9 +33,8 @@ class CharacterRepository {
 
     final List results = data['results'];
 
-    final List<Character> characters = results
-        .map((json) => Character.fromJson(json))
-        .toList();
+    final List<Character> characters =
+        results.map((json) => Character.fromJson(json)).toList();
 
     _localStorage.cachePage(page, characters);
     return characters;

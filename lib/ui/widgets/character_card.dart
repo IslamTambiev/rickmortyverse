@@ -33,13 +33,26 @@ class _CharacterCardState extends State<CharacterCard>
     );
 
     _scale = TweenSequence([
-      TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.6).chain(CurveTween(curve: Curves.easeOut)), weight: 50),
-      TweenSequenceItem(tween: Tween(begin: 1.6, end: 1.0).chain(CurveTween(curve: Curves.easeIn)), weight: 50),
+      TweenSequenceItem(
+        tween: Tween(
+          begin: 1.0,
+          end: 1.6,
+        ).chain(CurveTween(curve: Curves.easeOut)),
+        weight: 50,
+      ),
+      TweenSequenceItem(
+        tween: Tween(
+          begin: 1.6,
+          end: 1.0,
+        ).chain(CurveTween(curve: Curves.easeIn)),
+        weight: 50,
+      ),
     ]).animate(_controller);
 
-    _rotation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _rotation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   void _handleToggle() {
@@ -57,13 +70,12 @@ class _CharacterCardState extends State<CharacterCard>
           width: 50,
           height: 50,
           fit: BoxFit.cover,
-          progressIndicatorBuilder: (context, url, downloadProgress) =>
-              CircularProgressIndicator(value: downloadProgress.progress),
-          errorWidget: (context, url, error) => const Icon(
-            Icons.broken_image,
-            size: 50,
-            color: Colors.grey,
-          ),
+          progressIndicatorBuilder:
+              (context, url, downloadProgress) =>
+                  CircularProgressIndicator(value: downloadProgress.progress),
+          errorWidget:
+              (context, url, error) =>
+                  const Icon(Icons.broken_image, size: 50, color: Colors.grey),
         ),
         // leading: Image.network(
         //   widget.character.imageUrl,
@@ -77,7 +89,9 @@ class _CharacterCardState extends State<CharacterCard>
         //   ),
         // ),
         title: Text(widget.character.name),
-        subtitle: Text('${widget.character.status} • ${widget.character.species}'),
+        subtitle: Text(
+          '${widget.character.status} • ${widget.character.species}',
+        ),
         trailing: AnimatedBuilder(
           animation: _controller,
           builder: (context, child) {
@@ -86,9 +100,10 @@ class _CharacterCardState extends State<CharacterCard>
               child: Transform.scale(
                 scale: _scale.value,
                 child: IconButton(
-                  icon: widget.isFavorite
-                      ? const Icon(Icons.star, color: Colors.yellow)
-                      : const Icon(Icons.star_border),
+                  icon:
+                      widget.isFavorite
+                          ? const Icon(Icons.star, color: Colors.yellow)
+                          : const Icon(Icons.star_border),
                   onPressed: _handleToggle,
                 ),
               ),

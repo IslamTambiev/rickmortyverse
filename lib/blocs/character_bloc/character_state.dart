@@ -14,10 +14,7 @@ final class CharacterLoaded extends CharacterState {
   final List<Character> characters;
   final bool hasMore;
 
-  CharacterLoaded({
-    required this.characters,
-    required this.hasMore,
-  });
+  CharacterLoaded({required this.characters, required this.hasMore});
 }
 
 /// Состояние ошибки при загрузке данных

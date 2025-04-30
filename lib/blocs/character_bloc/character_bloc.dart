@@ -13,13 +13,14 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
   bool _hasMore = true;
 
   CharacterBloc(this.repository) : super(CharacterInitial()) {
-    on<CharacterEvent>((event, emit) {
-
-    });
+    on<CharacterEvent>((event, emit) {});
     on<FetchCharactersEvent>(_onFetchCharacters);
   }
 
-  void _onFetchCharacters(FetchCharactersEvent event, Emitter<CharacterState> emit) async {
+  void _onFetchCharacters(
+    FetchCharactersEvent event,
+    Emitter<CharacterState> emit,
+  ) async {
     if (_isFetching || !_hasMore) return;
 
     _isFetching = true;
@@ -35,14 +36,17 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       _hasMore = newCharacters.length == repository.pageSize;
       _currentPage++;
 
-      final existing = state is CharacterLoaded
-          ? (state as CharacterLoaded).characters
-          : <Character>[];
+      final existing =
+          state is CharacterLoaded
+              ? (state as CharacterLoaded).characters
+              : <Character>[];
 
-      emit(CharacterLoaded(
-        characters: [...existing, ...newCharacters],
-        hasMore: _hasMore,
-      ));
+      emit(
+        CharacterLoaded(
+          characters: [...existing, ...newCharacters],
+          hasMore: _hasMore,
+        ),
+      );
     } catch (e) {
       emit(CharacterError('Не удалось загрузить персонажей.'));
     } finally {

@@ -23,7 +23,8 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 300) {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 300) {
       context.read<CharacterBloc>().add(FetchCharactersEvent());
     }
   }
@@ -33,17 +34,20 @@ class _CharactersScreenState extends State<CharactersScreen> {
     final themeCubit = context.read<ThemeCubit>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Персонажи'),actions: [
-        IconButton(
-          icon: Icon(
-            Theme.of(context).brightness == Brightness.dark
-                ? Icons.light_mode
-                : Icons.dark_mode,
+      appBar: AppBar(
+        title: const Text('Персонажи'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Theme.of(context).brightness == Brightness.dark
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+            onPressed: themeCubit.toggleTheme,
           ),
-          onPressed: themeCubit.toggleTheme,
-        ),
-        const SizedBox(width: 12),
-      ],),
+          const SizedBox(width: 12),
+        ],
+      ),
       body: BlocBuilder<CharacterBloc, CharacterState>(
         builder: (context, state) {
           if (state is CharacterLoading && state is! CharacterLoaded) {
